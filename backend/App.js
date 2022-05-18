@@ -18,4 +18,6 @@ DB_Connection();
 //middlewares
 App.use(express.json());
 const Admin = require("./Routes/Admin");
+const StudentRoute = require("./Routes/Student");
 App.use(Admin);
+App.use(StudentRoute);

@@ -4,7 +4,7 @@ const DB_Connection = () => {
   mongoose.connect(process.env.MONGO_URI);
 
   mongoose.connection.on("connected", () => {
-    console.log("Connectedto DB");
+    console.log("Connected to DB");
   });
 
   mongoose.connection.on("err", (err) => {
