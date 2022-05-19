@@ -1,25 +1,47 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { useState, useEffect, createContext, useContext } from "react";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import AdminLogIn from "./Pages/AdminLogIn/AdminLogIn";
 import StudentLogIn from "./Pages/StudentLogIn/StudentLogIn";
 import Navbar from "./Components/Navbar";
 
-function App() {
+export const UserContext = createContext();
+
+const Routing = () => {
+  const history = useHistory();
+
+  const [user, setUser] = useContext(UserContext);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("data"));
+    if (!data) {
+      history.push("/admin/login");
+    }
+  }, [user, setUser, history]);
+
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Switch>
-        <Route exact path="/">
-          <h1>Home</h1>
-        </Route>
-        <Route path="/admin/login">
-          <AdminLogIn />
-        </Route>
-        <Route path="/student/login">
-          <StudentLogIn />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path="/">
+        <h1>Home</h1>
+      </Route>
+      <Route path="/admin/login">
+        <AdminLogIn />
+      </Route>
+      <Route path="/student/login">
+        <StudentLogIn />
+      </Route>
+    </Switch>
+  );
+};
+
+function App() {
+  const [user, setUser] = useState({});
+  return (
+    <UserContext.Provider value={[user, setUser]}>
+      <BrowserRouter>
+        <Navbar />
+        <Routing />
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { URL } from "../../Connections/Connection";
+import { UserContext } from "../../App";
 import {
   CardWrapper,
   CardHeader,
@@ -14,6 +15,7 @@ import {
 const AdminLogIn = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useContext(UserContext);
 
   const history = useHistory();
 
@@ -35,6 +37,8 @@ const AdminLogIn = () => {
     if (res.message) {
       localStorage.setItem("jwt", res.token);
       localStorage.setItem("data", JSON.stringify(res.data));
+      setUser(res.data);
+      console.log(user, "admin");
       history.push("/");
     }
   };
