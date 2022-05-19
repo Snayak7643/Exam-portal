@@ -3,6 +3,7 @@ const router = express.Router();
 const Student = require("../Models/Student");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const StudentAuth = require("../Middleware/StudentAuth");
 require("dotenv/config");
 
 //router for student login
@@ -34,6 +35,11 @@ router.post("/student/login", (req, res) => {
     }
   };
   func();
+});
+
+//router for answer
+router.post("/exam", StudentAuth, (req, res) => {
+  res.json({ message: "got the ans" });
 });
 
 module.exports = router;
