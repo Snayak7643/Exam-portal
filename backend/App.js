@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv/config");
 
 const App = express();
@@ -17,6 +18,7 @@ DB_Connection();
 
 //middlewares
 App.use(express.json());
+App.use(cors());
 const Admin = require("./Routes/Admin");
 const StudentRoute = require("./Routes/Student");
 App.use(Admin);

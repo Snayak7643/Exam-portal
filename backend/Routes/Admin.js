@@ -26,7 +26,7 @@ router.post("/admin/login", (req, res) => {
       return res.json({
         message: "Logged In Successfully",
         token,
-        data: { id },
+        data: id,
       });
     } catch (err) {
       console.log({ err });
