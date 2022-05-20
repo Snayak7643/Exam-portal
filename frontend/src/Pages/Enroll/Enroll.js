@@ -8,7 +8,7 @@ import {
   Button,
   Dropdown,
   Divider,
-} from "./EnrollStyle";
+} from "../../Components/Form/FormStyle";
 
 const Enroll = () => {
   const [reg, setReg] = useState("");

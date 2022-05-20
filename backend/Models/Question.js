@@ -13,16 +13,8 @@ const Question = new mongoose.Schema({
     type: String,
     required: true,
   },
-  day: {
-    type: Number,
-    required: true,
-  },
-  month: {
-    type: Number,
-    required: true,
-  },
-  year: {
-    type: Number,
+  date: {
+    type: String,
     required: true,
   },
   dur: {

@@ -32,6 +32,9 @@ const Navbar = () => {
           <NavLink key="enroll" to="/enroll">
             Enroll
           </NavLink>,
+          <NavLink key="upload" to="/upload">
+            Upload
+          </NavLink>,
           <NavLink
             key="adminlogout"
             to="/student/login"

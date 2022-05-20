@@ -4,6 +4,7 @@ import AdminLogIn from "./Pages/AdminLogIn/AdminLogIn";
 import StudentLogIn from "./Pages/StudentLogIn/StudentLogIn";
 import Exam from "./Pages/Exam/Exam";
 import Enroll from "./Pages/Enroll/Enroll";
+import Upload from "./Pages/Upload/Upload";
 import Navbar from "./Components/Navbar";
 
 export const UserContext = createContext();
@@ -36,6 +37,9 @@ const Routing = () => {
       </Route>
       <Route path="/enroll">
         <Enroll />
+      </Route>
+      <Route path="/upload">
+        <Upload />
       </Route>
     </Switch>
   );

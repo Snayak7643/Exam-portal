@@ -37,12 +37,12 @@ router.post("/admin/login", (req, res) => {
 
 //router for upload
 router.post("/upload", AdminAuth, (req, res) => {
-  const { std, sub, prof, day, month, year, dur, pdf, desc } = req.body;
-  if (!std || !sub || !prof || !day || !month || !year || !dur || !pdf) {
+  const { std, sub, prof, date, dur, pdf, desc } = req.body;
+  if (!std || !sub || !prof || !date || !dur || !pdf) {
     return res.status(422).json({ err: "Fill the Required Fields!!" });
   }
   const func = async () => {
-    const savedQue = await Question.findOne({ std, sub, day, month, year });
+    const savedQue = await Question.findOne({ std, sub, date });
     if (savedQue) {
       return res.status(422).json({ err: "Question is already uplaoded !!" });
     }
@@ -50,9 +50,7 @@ router.post("/upload", AdminAuth, (req, res) => {
       std,
       sub,
       prof,
-      day,
-      month,
-      year,
+      date,
       dur,
       pdf,
       desc,
