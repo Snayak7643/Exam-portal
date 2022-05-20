@@ -2,6 +2,8 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import AdminLogIn from "./Pages/AdminLogIn/AdminLogIn";
 import StudentLogIn from "./Pages/StudentLogIn/StudentLogIn";
+import Exam from "./Pages/Exam/Exam";
+import Enroll from "./Pages/Enroll/Enroll";
 import Navbar from "./Components/Navbar";
 
 export const UserContext = createContext();
@@ -28,6 +30,12 @@ const Routing = () => {
       </Route>
       <Route path="/student/login">
         <StudentLogIn />
+      </Route>
+      <Route path="/exam">
+        <Exam />
+      </Route>
+      <Route path="/enroll">
+        <Enroll />
       </Route>
     </Switch>
   );
