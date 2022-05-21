@@ -5,6 +5,7 @@ import StudentLogIn from "./Pages/StudentLogIn/StudentLogIn";
 import Exam from "./Pages/Exam/Exam";
 import Enroll from "./Pages/Enroll/Enroll";
 import Upload from "./Pages/Upload/Upload";
+import Students from "./Pages/Students/Students";
 import Navbar from "./Components/Navbar";
 
 export const UserContext = createContext();
@@ -13,6 +14,17 @@ const Routing = () => {
   const history = useHistory();
 
   const [user, setUser] = useContext(UserContext);
+
+  useEffect(() => {
+    if (localStorage.getItem("data") && Object.keys(user).length === 0) {
+      const func = async () => {
+        const data = await JSON.parse(localStorage.getItem("data"));
+        console.log(data, "reload");
+        setUser(data);
+      };
+      func();
+    }
+  }, [user, setUser]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
@@ -40,6 +52,9 @@ const Routing = () => {
       </Route>
       <Route path="/upload">
         <Upload />
+      </Route>
+      <Route path="/allstudents">
+        <Students />
       </Route>
     </Switch>
   );

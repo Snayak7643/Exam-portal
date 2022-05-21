@@ -36,8 +36,8 @@ const AdminLogIn = () => {
 
     if (res.message) {
       localStorage.setItem("jwt", res.token);
-      localStorage.setItem("data", JSON.stringify(res.data));
-      setUser(res.data);
+      localStorage.setItem("data", JSON.stringify({ data: res.data }));
+      setUser({ data: res.data });
       console.log(user, "admin");
       history.push("/");
     }

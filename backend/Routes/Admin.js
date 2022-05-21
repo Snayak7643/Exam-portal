@@ -110,4 +110,13 @@ router.post("/enroll", AdminAuth, (req, res) => {
   func();
 });
 
+//router for all Students
+router.get("/allstudents", AdminAuth, (req, res) => {
+  const func = async () => {
+    const students = await Student.find({});
+    return res.json(students);
+  };
+  func();
+});
+
 module.exports = router;

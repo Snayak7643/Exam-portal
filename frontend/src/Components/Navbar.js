@@ -35,6 +35,9 @@ const Navbar = () => {
           <NavLink key="upload" to="/upload">
             Upload
           </NavLink>,
+          <NavLink key="allstudents" to="/allstudents">
+            All-Students
+          </NavLink>,
           <NavLink
             key="adminlogout"
             to="/student/login"

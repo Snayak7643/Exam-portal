@@ -4,6 +4,7 @@ const Student = require("../Models/Student");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const StudentAuth = require("../Middleware/StudentAuth");
+const Question = require("../Models/Question");
 require("dotenv/config");
 
 //router for student login
@@ -37,9 +38,17 @@ router.post("/student/login", (req, res) => {
   func();
 });
 
-//router for answer
+//router for question
 router.post("/exam", StudentAuth, (req, res) => {
-  res.json({ message: "got the ans" });
+  const { std, date } = req.body;
+  if (!std || !date) {
+    return res.status(422).json({ err: "Information is not sufficient" });
+  }
+  const func = async () => {
+    const que = await Question.find({ std, date });
+    return res.json(que);
+  };
+  func();
 });
 
 module.exports = router;
