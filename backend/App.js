@@ -19,6 +19,11 @@ DB_Connection();
 //middlewares
 App.use(express.json());
 App.use(cors());
+//type of cors incase cors doesnot work
+App.use((req, res, next) => {
+  res.header({ "Access-Control-Allow-Origin": "*" });
+  next();
+});
 const Admin = require("./Routes/Admin");
 const StudentRoute = require("./Routes/Student");
 App.use(Admin);
