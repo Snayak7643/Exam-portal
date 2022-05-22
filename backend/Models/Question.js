@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const Question = new mongoose.Schema({
+  examName: {
+    type: String,
+    required: true,
+  },
   std: {
     type: String,
     required: true,

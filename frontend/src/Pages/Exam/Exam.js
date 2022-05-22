@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
+import {
+  TableWrapper,
+  Table,
+  Tr,
+  Th,
+  Td,
+} from "../../Components/Table/TableStyle";
 import { URL } from "../../Connections/Connection";
 
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, "0");
-var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-var yyyy = today.getFullYear();
-today = yyyy + "-" + mm + "-" + dd;
-
 const Exam = () => {
-  const [que, setQue] = useState("");
-  const data = JSON.parse(localStorage.getItem("data"));
+  const [que, setQue] = useState({});
+  const [pdf, setPdf] = useState("");
 
-  useEffect(() => {
-    console.log(today, data.std);
-    const func = async () => {
+  const handleClick = async () => {
+    try {
       const response = await fetch(URL + "/exam", {
         method: "post",
         headers: {
@@ -21,24 +21,69 @@ const Exam = () => {
           Authorization: "Bearer" + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
-          std: data.std,
-          date: today,
+          pdf,
+          que,
         }),
       });
 
       const res = await response.json();
-      setQue(res[0].pdf);
-      console.log(res[0].pdf);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const func = async () => {
+      const response = await fetch(URL + "/exam", {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer" + localStorage.getItem("jwt"),
+        },
+      });
+
+      const res = await response.json();
+      setQue(res[0]);
+      console.log(res);
     };
     func();
-  }, [data.std]);
+  }, []);
 
-  console.log(today);
   return (
-    <div>
-      <h1>Exam</h1>
-      <a href={que}>Que</a>
-    </div>
+    <TableWrapper>
+      <Table>
+        <thead>
+          <Tr>
+            <Th>Subject</Th>
+            <Th>Question</Th>
+            <Th>Choose File</Th>
+            <Th>Uploaded File</Th>
+          </Tr>
+        </thead>
+        <tbody>
+          <Tr>
+            <Td>{que.sub}</Td>
+            <Td>
+              <a href={que.pdf} target="_blank" rel="noreferrer">
+                QueLink
+              </a>
+            </Td>
+            <Td>
+              <input
+                type="text"
+                placeholder="answer"
+                onChange={(e) => {
+                  setPdf(e.target.value);
+                }}
+              />
+              <button onClick={handleClick}>Submit</button>
+            </Td>
+            <Td>Nofile</Td>
+          </Tr>
+        </tbody>
+      </Table>
+    </TableWrapper>
   );
 };
 

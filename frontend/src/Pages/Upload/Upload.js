@@ -10,6 +10,7 @@ import {
 } from "../../Components/Form/FormStyle";
 
 const Upload = () => {
+  const [examName, setExamName] = useState("");
   const [std, setStd] = useState("");
   const [sub, setSub] = useState("");
   const [prof, setProf] = useState("");
@@ -44,6 +45,7 @@ const Upload = () => {
           Authorization: "Bearer" + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
+          examName,
           std,
           sub,
           prof,
@@ -68,6 +70,19 @@ const Upload = () => {
   return (
     <FormWrapper>
       <h2>Upload Question</h2>
+
+      <InputContainer>
+        <Icon className="fa fa-envelope icon"></Icon>
+        <Dropdown
+          onChange={(e) => {
+            setExamName(e.target.value);
+          }}
+        >
+          <option value="0">Exam Name</option>
+          <option value="Mid-Term">Mid-Term</option>
+          <option value="End-Term">End-Term</option>
+        </Dropdown>
+      </InputContainer>
 
       <InputContainer>
         <Icon className="fa fa-envelope icon"></Icon>

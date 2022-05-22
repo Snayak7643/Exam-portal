@@ -37,8 +37,8 @@ router.post("/admin/login", (req, res) => {
 
 //router for upload
 router.post("/upload", AdminAuth, (req, res) => {
-  const { std, sub, prof, date, dur, pdf, desc } = req.body;
-  if (!std || !sub || !prof || !date || !dur || !pdf) {
+  const { examName, std, sub, prof, date, dur, pdf, desc } = req.body;
+  if (!examName || !std || !sub || !prof || !date || !dur || !pdf) {
     return res.status(422).json({ err: "Fill the Required Fields!!" });
   }
   const func = async () => {
@@ -47,6 +47,7 @@ router.post("/upload", AdminAuth, (req, res) => {
       return res.status(422).json({ err: "Question is already uplaoded !!" });
     }
     const que = new Question({
+      examName,
       std,
       sub,
       prof,
