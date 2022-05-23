@@ -77,7 +77,18 @@ router.post("/exam", StudentAuth, (req, res) => {
     if (savedAns) {
       Answer.findByIdAndUpdate(
         { _id: savedAns._id },
-        { $set: { student: data._id, question: que._id, pdf: pdf } }
+        {
+          $set: {
+            reg_no: data.reg_no,
+            name: data.name,
+            sub: que.sub,
+            std: que.std,
+            date: que.date,
+            student: data._id,
+            question: que._id,
+            pdf: pdf,
+          },
+        }
       ).exec(function (err, ans) {
         if (err) {
           return res.status(500).json({ error: err });
@@ -87,6 +98,11 @@ router.post("/exam", StudentAuth, (req, res) => {
       });
     } else {
       const ans = new Answer({
+        reg_no: data.reg_no,
+        name: data.name,
+        sub: que.sub,
+        std: que.std,
+        date: que.date,
         student: data._id,
         question: que._id,
         pdf,
@@ -103,6 +119,16 @@ router.post("/exam", StudentAuth, (req, res) => {
           console.log({ err });
         });
     }
+  };
+  func();
+});
+
+//router for uploaded answers
+router.get("/uploadedanswers", StudentAuth, (req, res) => {
+  const student = req.data;
+  const func = async () => {
+    const ans = await Answer.find({ student: student._id });
+    return res.json(ans);
   };
   func();
 });

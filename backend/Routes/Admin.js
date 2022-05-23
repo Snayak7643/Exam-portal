@@ -6,6 +6,7 @@ const Student = require("../Models/Student");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const AdminAuth = require("../Middleware/AdminAuth");
+const Answer = require("../Models/Answer");
 
 //router for admin login
 router.post("/admin/login", (req, res) => {
@@ -120,4 +121,65 @@ router.get("/allstudents", AdminAuth, (req, res) => {
   func();
 });
 
+//router for all Answers
+router.post("/allanswers", AdminAuth, (req, res) => {
+  const { examName, std, sub } = req.body;
+  if (!std || !sub) {
+    return res.status(422).json({ err: "Fill the Required Fields!!" });
+  }
+  const func = async () => {
+    const answers = await Answer.find({ std, sub });
+    return res.json(answers);
+  };
+  func();
+});
+
+//router for delete student
+router.post("/deletestudent", AdminAuth, (req, res) => {
+  const { _id } = req.body;
+  Student.findByIdAndDelete({ _id })
+    .then(function (student) {
+      res.json({ message: "Deleted Successfully" });
+    })
+    .catch((err) => {
+      res.json({ error: err });
+    });
+});
+
+//router for student details
+router.post("/studentdetails", AdminAuth, (req, res) => {
+  const { _id } = req.body;
+  const func = async () => {
+    const student = await Student.findById({ _id });
+    return res.json(student);
+  };
+  func();
+});
+
+//router for update students
+router.post("/updatestudent", AdminAuth, (req, res) => {
+  const { _id, reg_no, name, std, email, password, dob, subjects } = req.body;
+  if (
+    !_id ||
+    !reg_no ||
+    !name ||
+    !std ||
+    !email ||
+    !password ||
+    !dob ||
+    !subjects
+  ) {
+    return res.status(402).json({ err: "All the Fields are Requiresd" });
+  }
+  Student.findByIdAndUpdate(
+    { _id },
+    { $set: { reg_no, name, std, email, password, dob, subjects } }
+  ).exec(function (err, student) {
+    if (err) {
+      return res.status(500).json({ error: err });
+    } else {
+      return res.json({ message: "File Updated", student });
+    }
+  });
+});
 module.exports = router;

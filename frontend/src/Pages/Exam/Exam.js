@@ -44,7 +44,9 @@ const Exam = () => {
       });
 
       const res = await response.json();
-      setQue(res[0]);
+      if (res.length !== 0) {
+        setQue(res[0]);
+      }
       console.log(res);
     };
     func();
@@ -52,37 +54,41 @@ const Exam = () => {
 
   return (
     <TableWrapper>
-      <Table>
-        <thead>
-          <Tr>
-            <Th>Subject</Th>
-            <Th>Question</Th>
-            <Th>Choose File</Th>
-            <Th>Uploaded File</Th>
-          </Tr>
-        </thead>
-        <tbody>
-          <Tr>
-            <Td>{que.sub}</Td>
-            <Td>
-              <a href={que.pdf} target="_blank" rel="noreferrer">
-                QueLink
-              </a>
-            </Td>
-            <Td>
-              <input
-                type="text"
-                placeholder="answer"
-                onChange={(e) => {
-                  setPdf(e.target.value);
-                }}
-              />
-              <button onClick={handleClick}>Submit</button>
-            </Td>
-            <Td>Nofile</Td>
-          </Tr>
-        </tbody>
-      </Table>
+      {Object.keys(que).length !== 0 ? (
+        <Table>
+          <thead>
+            <Tr>
+              <Th>Subject</Th>
+              <Th>Question</Th>
+              <Th>Choose File</Th>
+              <Th>Uploaded File</Th>
+            </Tr>
+          </thead>
+          <tbody>
+            <Tr>
+              <Td>{que.sub}</Td>
+              <Td>
+                <a href={que.pdf} target="_blank" rel="noreferrer">
+                  QueLink
+                </a>
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  placeholder="answer"
+                  onChange={(e) => {
+                    setPdf(e.target.value);
+                  }}
+                />
+                <button onClick={handleClick}>Submit</button>
+              </Td>
+              <Td>Nofile</Td>
+            </Tr>
+          </tbody>
+        </Table>
+      ) : (
+        <h4>No Exams for Now</h4>
+      )}
     </TableWrapper>
   );
 };

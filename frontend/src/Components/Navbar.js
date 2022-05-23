@@ -15,6 +15,9 @@ const Navbar = () => {
           <NavLink key="exam" to="/exam">
             Exam
           </NavLink>,
+          <NavLink key="uploadedanswers" to="/uploadedanswers">
+            Upload-Answers
+          </NavLink>,
           <NavLink
             key="studentlogout"
             to="/student/login"
@@ -37,6 +40,9 @@ const Navbar = () => {
           </NavLink>,
           <NavLink key="allstudents" to="/allstudents">
             All-Students
+          </NavLink>,
+          <NavLink key="allanswers" to="/allanswers">
+            Check-Answers
           </NavLink>,
           <NavLink
             key="adminlogout"

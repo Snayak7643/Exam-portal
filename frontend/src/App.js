@@ -6,6 +6,9 @@ import Exam from "./Pages/Exam/Exam";
 import Enroll from "./Pages/Enroll/Enroll";
 import Upload from "./Pages/Upload/Upload";
 import Students from "./Pages/Students/Students";
+import UploadedAnswers from "./Pages/UploadedAnswers/UploadedAnswers";
+import AllAnswers from "./Pages/AllAnswers/AllAnswers";
+import StudentDetail from "./Pages/StudentDetail/StudentDetail";
 import Navbar from "./Components/Navbar";
 
 export const UserContext = createContext();
@@ -53,8 +56,17 @@ const Routing = () => {
       <Route path="/upload">
         <Upload />
       </Route>
-      <Route path="/allstudents">
+      <Route exact path="/allstudents">
         <Students />
+      </Route>
+      <Route path="/uploadedanswers">
+        <UploadedAnswers />
+      </Route>
+      <Route path="/allanswers">
+        <AllAnswers />
+      </Route>
+      <Route path="/allstudents/:id">
+        <StudentDetail />
       </Route>
     </Switch>
   );
