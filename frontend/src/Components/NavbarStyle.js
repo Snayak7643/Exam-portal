@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
   border-bottom: 1px solid white;
-  background-color: rgb(0, 30, 60, 0.7);
+  background-image: linear-gradient(to right, #360b3b, #056b6f);
   height: 80px;
   display: flex;
   justify-content: center;

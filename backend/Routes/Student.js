@@ -41,16 +41,19 @@ router.post("/student/login", (req, res) => {
 
 //router for question
 
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, "0");
-var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-var yyyy = today.getFullYear();
-today = yyyy + "-" + mm + "-" + dd;
+const DateToday = () => {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+  today = yyyy + "-" + mm + "-" + dd;
+  return today;
+};
 
 router.get("/exam", StudentAuth, (req, res) => {
   const data = req.data;
   const std = data.std;
-  const date = today;
+  const date = DateToday();
   if (!std || !date) {
     return res.status(422).json({ err: "Information is not sufficient" });
   }
@@ -112,7 +115,7 @@ router.post("/exam", StudentAuth, (req, res) => {
         .then((ans) => {
           return res.json({
             message: "File Uploaded Successfully",
-            data: ans,
+            ans,
           });
         })
         .catch((err) => {

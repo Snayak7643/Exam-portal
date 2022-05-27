@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import { URL } from "../../Connections/Connection";
+import Loader from "../../Components/Loader/Loader";
 import {
   CardWrapper,
   CardHeader,
+  CardIcon,
   CardHeading,
   CardBody,
   CardFieldset,
@@ -13,6 +15,8 @@ import {
 } from "../AdminLogIn/AdminLogInStyle";
 
 const StudentLogIn = () => {
+  const [loading, setLoading] = useState(false);
+
   const [reg, setReg] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,6 +25,7 @@ const StudentLogIn = () => {
   const history = useHistory();
 
   const handleClick = async () => {
+    setLoading(true);
     const response = await fetch(URL + "/student/login", {
       method: "post",
       headers: {
@@ -42,45 +47,51 @@ const StudentLogIn = () => {
       console.log(user, "student");
       history.push("/");
     }
+    setLoading(false);
   };
 
-  return (
-    <CardWrapper>
-      <CardHeader>
-        <CardHeading>Student Log In</CardHeading>
-      </CardHeader>
+  if (loading) {
+    return <Loader />;
+  } else {
+    return (
+      <CardWrapper>
+        <CardHeader>
+          <CardIcon />
+          <CardHeading>Student Log In</CardHeading>
+        </CardHeader>
 
-      <CardBody>
-        <CardFieldset>
-          <CardInput
-            placeholder="Registration No."
-            type="text"
-            required
-            onChange={(e) => {
-              setReg(e.target.value);
-            }}
-          />
-        </CardFieldset>
+        <CardBody>
+          <CardFieldset>
+            <CardInput
+              placeholder="Registration No."
+              type="text"
+              required
+              onChange={(e) => {
+                setReg(e.target.value);
+              }}
+            />
+          </CardFieldset>
 
-        <CardFieldset>
-          <CardInput
-            placeholder="Password"
-            type="password"
-            required
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </CardFieldset>
+          <CardFieldset>
+            <CardInput
+              placeholder="Password"
+              type="password"
+              required
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </CardFieldset>
 
-        <CardFieldset>
-          <CardButton type="button" onClick={handleClick}>
-            Submit
-          </CardButton>
-        </CardFieldset>
-      </CardBody>
-    </CardWrapper>
-  );
+          <CardFieldset>
+            <CardButton type="button" onClick={handleClick}>
+              Submit
+            </CardButton>
+          </CardFieldset>
+        </CardBody>
+      </CardWrapper>
+    );
+  }
 };
 
 export default StudentLogIn;

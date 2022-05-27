@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { URL } from "../../Connections/Connection";
+import Loader from "../../Components/Loader/Loader";
 import {
   FormWrapper,
   InputField,
@@ -13,6 +14,8 @@ import {
 
 const StudentDetail = (props) => {
   let { id } = useParams();
+
+  const [loading, setLoading] = useState(true);
 
   const [student, setStudent] = useState({});
   const [reg, setReg] = useState("");
@@ -27,6 +30,7 @@ const StudentDetail = (props) => {
   const history = useHistory();
 
   useEffect(() => {
+    setLoading(true);
     const func = async () => {
       const response = await fetch(URL + "/studentdetails", {
         method: "post",
@@ -48,12 +52,15 @@ const StudentDetail = (props) => {
       setSub3(res.subjects[2]);
       setDob(res.dob);
       console.log(res);
+
+      setLoading(false);
     };
     func();
   }, [id]);
 
   const handleClick = async () => {
     try {
+      setLoading(true);
       const response = await fetch(URL + "/updatestudent", {
         method: "post",
         headers: {
@@ -74,130 +81,135 @@ const StudentDetail = (props) => {
 
       const res = await response.json();
       console.log(res);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
     history.push("/allstudents");
   };
 
-  return (
-    <FormWrapper>
-      <h2>Update Student</h2>
-      <InputContainer>
-        <Icon className="fa fa-user icon"></Icon>
-        <InputField
-          style={{ backgroundColor: "wheat" }}
-          type="text"
-          value={name ? name : ""}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
-      </InputContainer>
+  if (loading) {
+    return <Loader />;
+  } else {
+    return (
+      <FormWrapper>
+        <h2>Update Student</h2>
+        <InputContainer>
+          <Icon className="fa fa-user icon"></Icon>
+          <InputField
+            style={{ backgroundColor: "wheat" }}
+            type="text"
+            value={name ? name : ""}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+        </InputContainer>
 
-      <InputContainer>
-        <Icon className="fa fa-envelope icon"></Icon>
-        <InputField
-          style={{ backgroundColor: "wheat" }}
-          type="text"
-          value={reg ? reg : ""}
-          onChange={(e) => {
-            setReg(e.target.value);
-          }}
-        />
-      </InputContainer>
+        <InputContainer>
+          <Icon className="fa fa-envelope icon"></Icon>
+          <InputField
+            style={{ backgroundColor: "wheat" }}
+            type="text"
+            value={reg ? reg : ""}
+            onChange={(e) => {
+              setReg(e.target.value);
+            }}
+          />
+        </InputContainer>
 
-      <InputContainer>
-        <Icon className="fa fa-envelope icon"></Icon>
-        <InputField
-          style={{ backgroundColor: "wheat" }}
-          type="date"
-          value={dob ? dob : "dd-mm-yyyy"}
-          onChange={(e) => {
-            setDob(e.target.value);
-          }}
-        />
-      </InputContainer>
+        <InputContainer>
+          <Icon className="fa fa-envelope icon"></Icon>
+          <InputField
+            style={{ backgroundColor: "wheat" }}
+            type="date"
+            value={dob ? dob : "dd-mm-yyyy"}
+            onChange={(e) => {
+              setDob(e.target.value);
+            }}
+          />
+        </InputContainer>
 
-      <InputContainer>
-        <Icon className="fa fa-envelope icon"></Icon>
-        <InputField
-          style={{ backgroundColor: "wheat" }}
-          type="text"
-          value={email ? email : ""}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-      </InputContainer>
+        <InputContainer>
+          <Icon className="fa fa-envelope icon"></Icon>
+          <InputField
+            style={{ backgroundColor: "wheat" }}
+            type="text"
+            value={email ? email : ""}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </InputContainer>
 
-      <InputContainer>
-        <Icon className="fa fa-envelope icon"></Icon>
-        <Dropdown
-          style={{ backgroundColor: "wheat" }}
-          value={std ? std : "Class"}
-          onChange={(e) => {
-            setStd(e.target.value);
-          }}
-        >
-          <option value="VII">VII</option>
-          <option value="VIII">VIII</option>
-          <option value="IX">IX</option>
-        </Dropdown>
-      </InputContainer>
+        <InputContainer>
+          <Icon className="fa fa-envelope icon"></Icon>
+          <Dropdown
+            style={{ backgroundColor: "wheat" }}
+            value={std ? std : "Class"}
+            onChange={(e) => {
+              setStd(e.target.value);
+            }}
+          >
+            <option value="VII">VII</option>
+            <option value="VIII">VIII</option>
+            <option value="IX">IX</option>
+          </Dropdown>
+        </InputContainer>
 
-      <Divider />
+        <Divider />
 
-      <InputContainer>
-        <h4>Subjects</h4>
-      </InputContainer>
+        <InputContainer>
+          <h4>Subjects</h4>
+        </InputContainer>
 
-      <InputContainer>
-        <Icon className="fa fa-envelope icon"></Icon>
-        <Dropdown
-          style={{ backgroundColor: "wheat" }}
-          value={sub1 ? sub1 : "Sub1"}
-          onChange={(e) => {
-            setSub1(e.target.value);
-          }}
-        >
-          <option value="Maths">Maths</option>
-          <option value="English">English</option>
-          <option value="Science">Science</option>
-        </Dropdown>
-      </InputContainer>
-      <InputContainer>
-        <Icon className="fa fa-envelope icon"></Icon>
-        <Dropdown
-          style={{ backgroundColor: "wheat" }}
-          value={sub2 ? sub2 : "Sub2"}
-          onChange={(e) => {
-            setSub2(e.target.value);
-          }}
-        >
-          <option value="Maths">Maths</option>
-          <option value="English">English</option>
-          <option value="Science">Science</option>
-        </Dropdown>
-      </InputContainer>
-      <InputContainer>
-        <Icon className="fa fa-envelope icon"></Icon>
-        <Dropdown
-          style={{ backgroundColor: "wheat" }}
-          value={sub3 ? sub3 : "Sub3"}
-          onChange={(e) => {
-            setSub3(e.target.value);
-          }}
-        >
-          <option value="Maths">Maths</option>
-          <option value="English">English</option>
-          <option value="Science">Science</option>
-        </Dropdown>
-      </InputContainer>
+        <InputContainer>
+          <Icon className="fa fa-envelope icon"></Icon>
+          <Dropdown
+            style={{ backgroundColor: "wheat" }}
+            value={sub1 ? sub1 : "Sub1"}
+            onChange={(e) => {
+              setSub1(e.target.value);
+            }}
+          >
+            <option value="Maths">Maths</option>
+            <option value="English">English</option>
+            <option value="Science">Science</option>
+          </Dropdown>
+        </InputContainer>
+        <InputContainer>
+          <Icon className="fa fa-envelope icon"></Icon>
+          <Dropdown
+            style={{ backgroundColor: "wheat" }}
+            value={sub2 ? sub2 : "Sub2"}
+            onChange={(e) => {
+              setSub2(e.target.value);
+            }}
+          >
+            <option value="Maths">Maths</option>
+            <option value="English">English</option>
+            <option value="Science">Science</option>
+          </Dropdown>
+        </InputContainer>
+        <InputContainer>
+          <Icon className="fa fa-envelope icon"></Icon>
+          <Dropdown
+            style={{ backgroundColor: "wheat" }}
+            value={sub3 ? sub3 : "Sub3"}
+            onChange={(e) => {
+              setSub3(e.target.value);
+            }}
+          >
+            <option value="Maths">Maths</option>
+            <option value="English">English</option>
+            <option value="Science">Science</option>
+          </Dropdown>
+        </InputContainer>
 
-      <Button onClick={handleClick}>Enroll</Button>
-    </FormWrapper>
-  );
+        <Button onClick={handleClick}>Enroll</Button>
+      </FormWrapper>
+    );
+  }
 };
 
 export default StudentDetail;

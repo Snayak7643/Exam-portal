@@ -23,13 +23,13 @@ export const InputField = styled.input`
   padding: 10px;
   outline: none;
   &:focus {
-    border: 2px solid dodgerblue;
+    border: 3px solid #047570;
   }
 `;
 
 export const Icon = styled.i`
   padding: 10px;
-  background: dodgerblue;
+  background: #047570;
   color: white;
   min-width: 50px;
   text-align: center;
@@ -40,19 +40,22 @@ export const Dropdown = styled.select`
   padding: 10px;
   outline: none;
   &:focus {
-    border: 2px solid dodgerblue;
+    border: 3px solid #047570;
   }
 `;
 
 export const Button = styled.button`
-  background-color: dodgerblue;
+  background-color: #047570;
+  font-weight: bold;
   color: white;
   padding: 15px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
-  opacity: 0.9;
+  opacity: 1;
+  transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
   &:hover {
-    opacity: 1;
+    background-color: white;
+    color: #047570;
   }
 `;

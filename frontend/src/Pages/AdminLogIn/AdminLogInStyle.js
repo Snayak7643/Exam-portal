@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaUserLock } from "react-icons/fa";
 
 export const CardWrapper = styled.div`
   overflow: hidden;
@@ -7,11 +8,18 @@ export const CardWrapper = styled.div`
   width: 380px;
   font-family: Quicksand, arial, sans-serif;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255, 0.3);
-  color: black;
+  background-color: #121b29;
+  color: white;
+`;
+
+export const CardIcon = styled(FaUserLock)`
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 `;
 
 export const CardHeader = styled.header`
+  text-align: center;
   padding-top: 32px;
   padding-bottom: 32px;
 `;
@@ -53,14 +61,14 @@ export const CardInput = styled.input`
   font-size: 14px;
   border-top: 0;
   border-right: 0;
-  border-bottom: 1px solid #ddd;
   border-left: 0;
+  border-bottom: 1px solid white;
   transition: border-bottom-color 0.25s ease-in;
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: white;
+  outline: 0;
 
   &:focus {
-    border-bottom-color: #15cdfc;
-    outline: 0;
+    border-bottom-color: #202b3d;
   }
 `;
 
@@ -71,17 +79,15 @@ export const CardButton = styled.button`
   font-family: inherit;
   font-size: 14px;
   font-weight: 700;
-  color: #000;
-  background-color: #15cdfc;
-  border: 0;
-  border-radius: 35px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+  color: white;
+  background-color: #121b29;
+  border: 1px solid white;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
 
   &:hover {
-    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
-    transform: translate(0, -5px);
+    color: #121b29;
+    background-color: white;
   }
 `;
 

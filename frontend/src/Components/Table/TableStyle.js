@@ -24,7 +24,12 @@ export const Td = styled.td`
 
 export const Tr = styled.tr`
   &:nth-child(even) {
-    background-color: #f2f2f2;
-    color: black;
+    background-color: #047570;
+    color: white;
   }
+`;
+
+export const TableIcon = styled.span`
+  margin-right: 5px;
+  font-size: 20px;
 `;

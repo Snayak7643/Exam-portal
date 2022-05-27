@@ -18,6 +18,7 @@ const Routing = () => {
 
   const [user, setUser] = useContext(UserContext);
 
+  //for restoring the data after refresh
   useEffect(() => {
     if (localStorage.getItem("data") && Object.keys(user).length === 0) {
       const func = async () => {
@@ -29,6 +30,7 @@ const Routing = () => {
     }
   }, [user, setUser]);
 
+  //for checking authentication
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
     if (!data) {
