@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "../../App";
 import Loader from "../../Components/Loader/Loader";
+import { FiAlignJustify } from "react-icons/fi";
+import { FaGraduationCap } from "react-icons/fa";
+import { BiBookBookmark } from "react-icons/bi";
 import {
   TableWrapper,
   Table,
@@ -64,7 +67,9 @@ const AllAnswers = () => {
         <TableWrapper>
           <FormWrapper>
             <InputContainer>
-              <Icon className="fa fa-envelope icon"></Icon>
+              <Icon>
+                <FiAlignJustify />
+              </Icon>
               <Dropdown
                 onChange={(e) => {
                   setExamName(e.target.value);
@@ -77,7 +82,9 @@ const AllAnswers = () => {
             </InputContainer>
 
             <InputContainer>
-              <Icon className="fa fa-envelope icon"></Icon>
+              <Icon>
+                <FaGraduationCap />
+              </Icon>
               <Dropdown
                 onChange={(e) => {
                   setStd(e.target.value);
@@ -91,7 +98,9 @@ const AllAnswers = () => {
             </InputContainer>
 
             <InputContainer>
-              <Icon className="fa fa-envelope icon"></Icon>
+              <Icon>
+                <BiBookBookmark />
+              </Icon>
               <Dropdown
                 onChange={(e) => {
                   setSub(e.target.value);

@@ -68,6 +68,7 @@ const Exam = () => {
   }, []);
 
   if (user.name) {
+    console.log("render..");
     if (loading) {
       return <Loader />;
     } else {
@@ -114,6 +115,7 @@ const Exam = () => {
       );
     }
   } else {
+    console.log(user, "rediect");
     return <Redirect to="/student/login" />;
   }
 };

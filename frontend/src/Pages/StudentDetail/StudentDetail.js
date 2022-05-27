@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { URL } from "../../Connections/Connection";
 import Loader from "../../Components/Loader/Loader";
+import { BsFillCalendar2Fill } from "react-icons/bs";
+import { FaGraduationCap } from "react-icons/fa";
+import { BiBookBookmark, BiRegistered } from "react-icons/bi";
 import {
   FormWrapper,
   InputField,
@@ -107,7 +110,9 @@ const StudentDetail = (props) => {
         </InputContainer>
 
         <InputContainer>
-          <Icon className="fa fa-envelope icon"></Icon>
+          <Icon>
+            <BiRegistered />
+          </Icon>
           <InputField
             style={{ backgroundColor: "wheat" }}
             type="text"
@@ -119,7 +124,9 @@ const StudentDetail = (props) => {
         </InputContainer>
 
         <InputContainer>
-          <Icon className="fa fa-envelope icon"></Icon>
+          <Icon>
+            <BsFillCalendar2Fill />
+          </Icon>
           <InputField
             style={{ backgroundColor: "wheat" }}
             type="date"
@@ -143,7 +150,9 @@ const StudentDetail = (props) => {
         </InputContainer>
 
         <InputContainer>
-          <Icon className="fa fa-envelope icon"></Icon>
+          <Icon>
+            <FaGraduationCap />
+          </Icon>
           <Dropdown
             style={{ backgroundColor: "wheat" }}
             value={std ? std : "Class"}
@@ -164,7 +173,9 @@ const StudentDetail = (props) => {
         </InputContainer>
 
         <InputContainer>
-          <Icon className="fa fa-envelope icon"></Icon>
+          <Icon>
+            <BiBookBookmark />
+          </Icon>
           <Dropdown
             style={{ backgroundColor: "wheat" }}
             value={sub1 ? sub1 : "Sub1"}
@@ -178,7 +189,9 @@ const StudentDetail = (props) => {
           </Dropdown>
         </InputContainer>
         <InputContainer>
-          <Icon className="fa fa-envelope icon"></Icon>
+          <Icon>
+            <BiBookBookmark />
+          </Icon>
           <Dropdown
             style={{ backgroundColor: "wheat" }}
             value={sub2 ? sub2 : "Sub2"}
@@ -192,7 +205,9 @@ const StudentDetail = (props) => {
           </Dropdown>
         </InputContainer>
         <InputContainer>
-          <Icon className="fa fa-envelope icon"></Icon>
+          <Icon>
+            <BiBookBookmark />
+          </Icon>
           <Dropdown
             style={{ backgroundColor: "wheat" }}
             value={sub3 ? sub3 : "Sub3"}

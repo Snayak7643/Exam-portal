@@ -3,6 +3,9 @@ import { useHistory, Redirect } from "react-router-dom";
 import { UserContext } from "../../App";
 import { URL } from "../../Connections/Connection";
 import Loader from "../../Components/Loader/Loader";
+import { BsFillCalendar2Fill } from "react-icons/bs";
+import { FaGraduationCap } from "react-icons/fa";
+import { BiBookBookmark, BiRegistered } from "react-icons/bi";
 import {
   FormWrapper,
   InputField,
@@ -78,7 +81,9 @@ const Enroll = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BiRegistered />
+            </Icon>
             <InputField
               type="text"
               placeholder="Enter Registration No."
@@ -89,7 +94,9 @@ const Enroll = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BsFillCalendar2Fill />
+            </Icon>
             <InputField
               type="date"
               onChange={(e) => {
@@ -110,16 +117,18 @@ const Enroll = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <FaGraduationCap />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setStd(e.target.value);
               }}
             >
               <option value="0">Class:</option>
-              <option value="VII">7</option>
-              <option value="VIII">8</option>
-              <option value="IX">9</option>
+              <option value="VII">VII</option>
+              <option value="VIII">VIII</option>
+              <option value="IX">IX</option>
             </Dropdown>
           </InputContainer>
 
@@ -130,7 +139,9 @@ const Enroll = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BiBookBookmark />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setSub1(e.target.value);
@@ -143,7 +154,9 @@ const Enroll = () => {
             </Dropdown>
           </InputContainer>
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BiBookBookmark />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setSub2(e.target.value);
@@ -156,7 +169,9 @@ const Enroll = () => {
             </Dropdown>
           </InputContainer>
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BiBookBookmark />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setSub3(e.target.value);

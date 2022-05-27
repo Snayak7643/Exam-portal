@@ -4,6 +4,14 @@ import { UserContext } from "../../App";
 import { URL } from "../../Connections/Connection";
 import Loader from "../../Components/Loader/Loader";
 import {
+  BsFillCalendar2Fill,
+  BsFillFileEarmarkPdfFill,
+  BsFillChatRightFill,
+} from "react-icons/bs";
+import { FiAlignJustify } from "react-icons/fi";
+import { FaGraduationCap } from "react-icons/fa";
+import { BiBookBookmark, BiTime } from "react-icons/bi";
+import {
   FormWrapper,
   InputField,
   InputContainer,
@@ -89,7 +97,9 @@ const Upload = () => {
           <h2>Upload Question</h2>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <FiAlignJustify />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setExamName(e.target.value);
@@ -102,7 +112,9 @@ const Upload = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <FaGraduationCap />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setStd(e.target.value);
@@ -127,7 +139,9 @@ const Upload = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BiBookBookmark />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setSub(e.target.value);
@@ -141,7 +155,9 @@ const Upload = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BsFillCalendar2Fill />
+            </Icon>
             <InputField
               type="date"
               onChange={(e) => {
@@ -151,7 +167,9 @@ const Upload = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-envelope icon"></Icon>
+            <Icon>
+              <BiTime />
+            </Icon>
             <Dropdown
               onChange={(e) => {
                 setDur(e.target.value);
@@ -163,7 +181,9 @@ const Upload = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-user icon"></Icon>
+            <Icon>
+              <BsFillFileEarmarkPdfFill />
+            </Icon>
             <InputField
               type="file"
               placeholder="Question(in pdf)"
@@ -174,7 +194,9 @@ const Upload = () => {
           </InputContainer>
 
           <InputContainer>
-            <Icon className="fa fa-user icon"></Icon>
+            <Icon>
+              <BsFillChatRightFill />
+            </Icon>
             <InputField
               type="text"
               placeholder="Any Description"
