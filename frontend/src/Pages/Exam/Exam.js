@@ -4,6 +4,7 @@ import { UserContext } from "../../App";
 import { Link, useHistory } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
 import swal from "sweetalert";
+import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
 import {
   TableWrapper,
   Table,
@@ -101,7 +102,7 @@ const Exam = () => {
                   <Td>{que.sub}</Td>
                   <Td>
                     <a href={que.pdf} target="_blank" rel="noreferrer">
-                      QueLink
+                      <BsFillFileEarmarkPdfFill />
                     </a>
                   </Td>
                   <Td>

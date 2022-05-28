@@ -34,6 +34,19 @@ const Enroll = () => {
   const [dob, setDob] = useState("");
 
   const handleClick = async () => {
+    if (std === "0" || sub1 === "0" || sub2 === "0" || sub3 === "0") {
+      swal("Fill Select a value from the Dropdown", {
+        buttons: false,
+        timer: 1700,
+      });
+      return;
+    } else if (sub1 === sub2 || sub2 === sub3 || sub2 === sub3) {
+      swal("All the subjects must be diffrent", {
+        buttons: false,
+        timer: 1700,
+      });
+      return;
+    }
     try {
       setLoading(true);
       const response = await fetch(URL + "/enroll", {
@@ -81,6 +94,13 @@ const Enroll = () => {
       return (
         <FormWrapper>
           <h2>Enroll Form</h2>
+
+          <InputContainer>
+            <Divider />
+            <p>Fill the Form to Register/Enroll a Student for Examination</p>
+            <Divider />
+          </InputContainer>
+
           <InputContainer>
             <Icon className="fa fa-user icon"></Icon>
             <InputField
@@ -106,6 +126,10 @@ const Enroll = () => {
           </InputContainer>
 
           <InputContainer>
+            <h4>Date of Birth</h4>
+          </InputContainer>
+
+          <InputContainer>
             <Icon>
               <BsFillCalendar2Fill />
             </Icon>
@@ -116,6 +140,8 @@ const Enroll = () => {
               }}
             />
           </InputContainer>
+
+          <InputContainer></InputContainer>
 
           <InputContainer>
             <Icon className="fa fa-envelope icon"></Icon>
@@ -143,8 +169,6 @@ const Enroll = () => {
               <option value="IX">IX</option>
             </Dropdown>
           </InputContainer>
-
-          <Divider />
 
           <InputContainer>
             <h4>Subjects</h4>
@@ -195,6 +219,8 @@ const Enroll = () => {
               <option value="Science">Science</option>
             </Dropdown>
           </InputContainer>
+
+          <InputContainer></InputContainer>
 
           <InputContainer>
             <Icon className="fa fa-key icon"></Icon>

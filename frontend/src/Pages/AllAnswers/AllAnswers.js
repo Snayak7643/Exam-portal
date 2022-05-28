@@ -34,6 +34,13 @@ const AllAnswers = () => {
   const [answers, setAnswers] = useState([]);
 
   const handleClick = async () => {
+    if (examName === "0" || std === "0" || sub === "0") {
+      swal("Fill All the Fields", {
+        buttons: false,
+        timer: 1500,
+      });
+      return;
+    }
     try {
       setLoading(true);
       const response = await fetch(URL + "/allanswers", {

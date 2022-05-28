@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import Home from "./Pages/Home/Home";
 import AdminLogIn from "./Pages/AdminLogIn/AdminLogIn";
 import StudentLogIn from "./Pages/StudentLogIn/StudentLogIn";
 import Exam from "./Pages/Exam/Exam";
@@ -9,6 +10,7 @@ import Students from "./Pages/Students/Students";
 import UploadedAnswers from "./Pages/UploadedAnswers/UploadedAnswers";
 import AllAnswers from "./Pages/AllAnswers/AllAnswers";
 import StudentDetail from "./Pages/StudentDetail/StudentDetail";
+import Profile from "./Pages/Profile/Profile";
 import Navbar from "./Components/Navbar";
 
 export const UserContext = createContext();
@@ -41,7 +43,7 @@ const Routing = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <h1>Home</h1>
+        <Home />
       </Route>
       <Route path="/admin/login">
         <AdminLogIn />
@@ -69,6 +71,9 @@ const Routing = () => {
       </Route>
       <Route path="/allstudents/:id">
         <StudentDetail />
+      </Route>
+      <Route path="/profile">
+        <Profile />
       </Route>
     </Switch>
   );

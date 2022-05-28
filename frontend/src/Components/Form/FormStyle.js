@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const FormWrapper = styled.div`
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
   text-align: center;
 `;
 
-export const Divider = styled.div`
-  width: 100%;
-  border: 1px solid grey;
+export const Divider = styled.hr`
+  color: white;
 `;
 
 export const InputContainer = styled.div`

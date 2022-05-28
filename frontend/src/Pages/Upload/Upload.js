@@ -38,6 +38,13 @@ const Upload = () => {
   const [pdf, setPdf] = useState("");
 
   const handleClick = async () => {
+    if (examName === "0" || std === "0" || sub === "0" || dur === "0" || !que) {
+      swal("Fill All the Fields", {
+        buttons: false,
+        timer: 1500,
+      });
+      return;
+    }
     setLoading(true);
     const data = new FormData();
     data.append("file", que);
@@ -162,6 +169,10 @@ const Upload = () => {
           </InputContainer>
 
           <InputContainer>
+            <h4>Date of Examination</h4>
+          </InputContainer>
+
+          <InputContainer>
             <Icon>
               <BsFillCalendar2Fill />
             </Icon>
@@ -172,6 +183,8 @@ const Upload = () => {
               }}
             />
           </InputContainer>
+
+          <InputContainer></InputContainer>
 
           <InputContainer>
             <Icon>
@@ -193,7 +206,7 @@ const Upload = () => {
             </Icon>
             <InputField
               type="file"
-              placeholder="Question(in pdf)"
+              placeholder="Question"
               onChange={(e) => {
                 setQue(e.target.files[0]);
               }}
@@ -206,7 +219,7 @@ const Upload = () => {
             </Icon>
             <InputField
               type="text"
-              placeholder="Any Description"
+              placeholder="Any Description(if any)"
               onChange={(e) => {
                 setDesc(e.target.value);
               }}

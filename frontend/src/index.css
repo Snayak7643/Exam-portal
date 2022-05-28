@@ -21,3 +21,8 @@ code {
   color: white;
   font-weight: bolder;
 }
+.swal-button {
+  background-color: white;
+  color: black;
+  font-weight: bolder;
+}
