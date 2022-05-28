@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../App";
 import { useHistory } from "react-router-dom";
 import { Nav, NavLink, NavMenu } from "./NavbarStyle";
+import swal from "sweetalert";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
@@ -22,6 +23,10 @@ const Navbar = () => {
             key="studentlogout"
             to="/student/login"
             onClick={() => {
+              swal("Logged Out Successfully", {
+                buttons: false,
+                timer: 1500,
+              });
               localStorage.clear();
               setUser({});
               history.push("/student/login");
@@ -48,6 +53,10 @@ const Navbar = () => {
             key="adminlogout"
             to="/student/login"
             onClick={() => {
+              swal("Logged Out Successfully", {
+                buttons: false,
+                timer: 1500,
+              });
               localStorage.clear();
               setUser({});
               history.push("/student/login");

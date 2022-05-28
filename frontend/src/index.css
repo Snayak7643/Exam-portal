@@ -13,3 +13,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.swal-modal {
+  background-color: #047570;
+}
+.swal-text {
+  color: white;
+  font-weight: bolder;
+}

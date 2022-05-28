@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { URL } from "../../Connections/Connection";
 import { UserContext } from "../../App";
 import Loader from "../../Components/Loader/Loader";
+import swal from "sweetalert";
 import {
   CardWrapper,
   CardIcon,
@@ -36,14 +37,22 @@ const AdminLogIn = () => {
     });
 
     const res = await response.json();
-    console.log(res);
 
     if (res.message) {
+      swal("Welcome " + res.data, {
+        buttons: false,
+        timer: 1500,
+      });
       localStorage.setItem("jwt", res.token);
       localStorage.setItem("data", JSON.stringify({ data: res.data }));
       setUser({ data: res.data });
       console.log(user, "admin");
       history.push("/");
+    } else {
+      swal(res.err, {
+        buttons: false,
+        timer: 1500,
+      });
     }
     setLoading(false);
   };

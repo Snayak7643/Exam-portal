@@ -5,6 +5,7 @@ import Loader from "../../Components/Loader/Loader";
 import { FiAlignJustify } from "react-icons/fi";
 import { FaGraduationCap } from "react-icons/fa";
 import { BiBookBookmark } from "react-icons/bi";
+import swal from "sweetalert";
 import {
   TableWrapper,
   Table,
@@ -49,9 +50,15 @@ const AllAnswers = () => {
       });
 
       const res = await response.json();
-      setAnswers(res);
-      console.log(res);
       setLoading(false);
+      if (res.err) {
+        swal(res.err, {
+          buttons: false,
+          timer: 1500,
+        });
+      } else {
+        setAnswers(res);
+      }
     } catch (err) {
       console.log(err);
     }

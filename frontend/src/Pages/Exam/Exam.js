@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { UserContext } from "../../App";
 import { Link, useHistory } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
+import swal from "sweetalert";
 import {
   TableWrapper,
   Table,
@@ -40,7 +41,18 @@ const Exam = () => {
       const res = await response.json();
       console.log(res);
       setLoading(false);
-      history.push("/uploadedanswers");
+      if (res.message) {
+        swal(res.message, {
+          buttons: false,
+          timer: 1500,
+        });
+        history.push("/uploadedanswers");
+      } else if (res.err) {
+        swal(res.err, {
+          buttons: false,
+          timer: 1500,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -65,7 +77,7 @@ const Exam = () => {
       setLoading(false);
     };
     func();
-  }, []);
+  }, [user]);
 
   if (user.name) {
     console.log("render..");

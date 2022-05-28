@@ -5,6 +5,7 @@ import Loader from "../../Components/Loader/Loader";
 import { BsFillCalendar2Fill } from "react-icons/bs";
 import { FaGraduationCap } from "react-icons/fa";
 import { BiBookBookmark, BiRegistered } from "react-icons/bi";
+import swal from "sweetalert";
 import {
   FormWrapper,
   InputField,
@@ -85,6 +86,18 @@ const StudentDetail = (props) => {
       const res = await response.json();
       console.log(res);
       setLoading(false);
+      if (res.message) {
+        swal(res.message, {
+          buttons: false,
+          timer: 1500,
+        });
+        history.push("/allstudents");
+      } else if (res.err) {
+        swal(res.err, {
+          buttons: false,
+          timer: 1500,
+        });
+      }
     } catch (err) {
       console.log(err);
     }

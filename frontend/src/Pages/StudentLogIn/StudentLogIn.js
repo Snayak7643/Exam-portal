@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import { URL } from "../../Connections/Connection";
 import Loader from "../../Components/Loader/Loader";
+import swal from "sweetalert";
 import {
   CardWrapper,
   CardHeader,
@@ -38,14 +39,22 @@ const StudentLogIn = () => {
     });
 
     const res = await response.json();
-    console.log(res);
 
     if (res.message) {
+      swal("Welcome " + res.data.name, {
+        buttons: false,
+        timer: 1500,
+      });
       localStorage.setItem("jwt", res.token);
       localStorage.setItem("data", JSON.stringify(res.data));
       setUser(res.data);
       console.log(user, "student");
       history.push("/");
+    } else {
+      swal(res.err, {
+        buttons: false,
+        timer: 1500,
+      });
     }
     setLoading(false);
   };

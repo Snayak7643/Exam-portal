@@ -5,6 +5,7 @@ import { NavLink } from "../../Components/Link/Link";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
 import Loader from "../../Components/Loader/Loader";
+import swal from "sweetalert";
 import {
   TableWrapper,
   Table,
@@ -58,6 +59,10 @@ const Students = () => {
     if (res.message) {
       setReload(!reload);
     }
+    swal("Student Deleted", {
+      buttons: false,
+      timer: 1500,
+    });
   };
 
   const Rows = () => {
@@ -75,7 +80,18 @@ const Students = () => {
               </TableIcon>
             </NavLink>
             <TableIcon style={{ cursor: "pointer" }}>
-              <FaTrashAlt onClick={() => handleClick(student._id)}>
+              <FaTrashAlt
+                onClick={() => {
+                  swal("Are you sure?", {
+                    text: "Once deleted, you will not be able to recover this!",
+                    buttons: true,
+                  }).then((willDelete) => {
+                    if (willDelete) {
+                      handleClick(student._id);
+                    }
+                  });
+                }}
+              >
                 Delete
               </FaTrashAlt>
             </TableIcon>

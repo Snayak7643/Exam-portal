@@ -3,6 +3,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import { UserContext } from "../../App";
 import { URL } from "../../Connections/Connection";
 import Loader from "../../Components/Loader/Loader";
+import swal from "sweetalert";
 import {
   BsFillCalendar2Fill,
   BsFillFileEarmarkPdfFill,
@@ -74,13 +75,19 @@ const Upload = () => {
       });
 
       const res = await response.json();
-      if (res.err) {
-        console.log(res.err);
-      } else {
-        console.log(res);
-        history.push("/");
-      }
       setLoading(false);
+      if (res.message) {
+        swal(res.message, {
+          buttons: false,
+          timer: 1500,
+        });
+        history.push("/");
+      } else if (res.err) {
+        swal(res.err, {
+          buttons: false,
+          timer: 1500,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
