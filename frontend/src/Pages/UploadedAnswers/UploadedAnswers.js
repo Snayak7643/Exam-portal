@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "../../App";
 import Loader from "../../Components/Loader/Loader";
+import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
 import {
   TableWrapper,
   Table,
   Tr,
   Th,
   Td,
+  TableLink,
 } from "../../Components/Table/TableStyle";
 import { URL } from "../../Connections/Connection";
 
@@ -44,7 +46,11 @@ const UploadedAnswers = () => {
           <Td>{i + 1}</Td>
           <Td>{answer.sub}</Td>
           <Td>{answer.date}</Td>
-          <Td>{answer.pdf}</Td>
+          <Td>
+            <TableLink href={answer.pdf} target="_blank" rel="noreferrer">
+              <BsFillFileEarmarkPdfFill />
+            </TableLink>
+          </Td>
         </Tr>
       );
     });

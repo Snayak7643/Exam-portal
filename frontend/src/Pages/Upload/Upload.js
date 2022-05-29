@@ -206,6 +206,7 @@ const Upload = () => {
             </Icon>
             <InputField
               type="file"
+              accept="image/*"
               placeholder="Question"
               onChange={(e) => {
                 setQue(e.target.files[0]);

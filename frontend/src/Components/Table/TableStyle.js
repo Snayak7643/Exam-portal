@@ -34,3 +34,20 @@ export const TableIcon = styled.span`
   margin-right: 5px;
   font-size: 20px;
 `;
+
+export const TableLink = styled.a`
+  text-decoration: none;
+  font-weight: bolder;
+  color: white;
+  font-size: 3.5vh;
+  &:hover {
+    text-decoration: none;
+  }
+  &:active {
+    text-decoration: none;
+  }
+  &:visited {
+    text-decoration: none;
+    color: white;
+  }
+`;

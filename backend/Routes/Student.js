@@ -41,19 +41,10 @@ router.post("/student/login", (req, res) => {
 
 //router for question
 
-const DateToday = () => {
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  var yyyy = today.getFullYear();
-  today = yyyy + "-" + mm + "-" + dd;
-  return today;
-};
-
-router.get("/exam", StudentAuth, (req, res) => {
+router.post("/examque", StudentAuth, (req, res) => {
   const data = req.data;
   const std = data.std;
-  const date = DateToday();
+  const { date } = req.body;
   if (!std || !date) {
     return res.status(422).json({ err: "Information is not sufficient" });
   }

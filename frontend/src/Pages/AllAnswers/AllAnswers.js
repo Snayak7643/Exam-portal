@@ -5,6 +5,7 @@ import Loader from "../../Components/Loader/Loader";
 import { FiAlignJustify } from "react-icons/fi";
 import { FaGraduationCap } from "react-icons/fa";
 import { BiBookBookmark } from "react-icons/bi";
+import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
 import swal from "sweetalert";
 import {
   TableWrapper,
@@ -12,6 +13,7 @@ import {
   Tr,
   Th,
   Td,
+  TableLink,
 } from "../../Components/Table/TableStyle";
 import {
   FormWrapper,
@@ -149,7 +151,15 @@ const AllAnswers = () => {
                         <Td>{answer.reg_no}</Td>
                         <Td>{answer.name}</Td>
                         <Td>{answer.date}</Td>
-                        <Td>{answer.pdf}</Td>
+                        <Td>
+                          <TableLink
+                            href={answer.pdf}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <BsFillFileEarmarkPdfFill />
+                          </TableLink>
+                        </Td>
                       </Tr>
                     );
                   })

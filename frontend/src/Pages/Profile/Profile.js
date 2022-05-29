@@ -1,32 +1,32 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../App";
 import {
-  CardWrapper,
-  CardIcon,
-  CardHeader,
-  CardHeading,
-  CardBody,
-} from "../AdminLogIn/AdminLogInStyle";
+  Container,
+  BannerImg,
+  ProfileImg,
+  Name,
+  ContainerWrapper,
+  Content,
+} from "./ProfileStyle";
 
 const Profile = () => {
   const [user] = useContext(UserContext);
 
   return (
-    <CardWrapper>
-      <CardHeader>
-        <CardIcon />
-        <CardHeading>Profile</CardHeading>
+    <ContainerWrapper>
+      <Container>
+        <BannerImg />
+        <ProfileImg
+          src="https://res.cloudinary.com/multiverse/image/upload/v1653829641/xc3lwcluk5bmsqmirs6x.jpg"
+          alt="Photo"
+        />
+        <Name>{user ? user.name : ""}</Name>
         <hr></hr>
-      </CardHeader>
-
-      <CardBody style={{ textAlign: "center" }}>
-        <h4>Name: {user.name ? user.name : ""}</h4>
-        <h4>Reg no.: {user.name ? user.reg_no : ""}</h4>
-        <h4>Email: {user.name ? user.email : ""}</h4>
-        <h4>Std: {user.name ? user.std : ""}</h4>
-        <h4>D.O.B.: {user.name ? user.dob : ""}</h4>
-      </CardBody>
-    </CardWrapper>
+        <Content>{user ? user.reg_no : ""}</Content>
+        <Content>{user ? user.email : ""}</Content>
+        <Content>{user ? user.std : ""}</Content>
+      </Container>
+    </ContainerWrapper>
   );
 };
 
